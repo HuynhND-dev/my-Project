@@ -59,6 +59,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         btntable_04.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/table.png"))); // NOI18N
+        btntable_04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntable_04ActionPerformed(evt);
+            }
+        });
 
         btnThongKe_04.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/statistics.png"))); // NOI18N
         btnThongKe_04.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +237,10 @@ public class Home extends javax.swing.JFrame {
         quanly.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnqlnv_04ActionPerformed
+
+    private void btntable_04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntable_04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntable_04ActionPerformed
 
     /**
      * @param args the command line arguments

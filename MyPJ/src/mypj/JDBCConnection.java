@@ -14,17 +14,12 @@ import java.util.logging.Logger;
 
 public class JDBCConnection {
   public static Connection getJDBCConnection() {
-        final String url = "jdbc:jtds:sqlserver://MSI\\SQLEXPRESS:1433/JAVA";
+        Connection con = null;
+        con = DriverManager.getConnection("jdbc:jtds:sqlserver://"HUYNHIT\SQLSERVER":1433/"test);
+
         final String user = "sa";
-        final String password="1234";
+        final String password="Huynh2k2";
         try{
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            return DriverManager.getConnection(url,user,password);
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDBCConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(JDBCConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+         }
 }
