@@ -16,16 +16,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ThangIKCU
- */
 public class ConnectSQL {
     private Connection cn;
     
     public ConnectSQL(){
         try{
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qlcafe?useUnicode=true&characterEncoding=utf8", "root", "");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/qlcafe", "root", "");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Kết nối thất bại !");
         }        
@@ -322,23 +318,7 @@ public class ConnectSQL {
         }
         return check; 
     }
-    public int LVTK(TaiKhoan tk)
-    {
-        int lvtk =0;
-        String sql;
-            sql = "Select lv From taikhoan Where username = '"+tk.GetUsername()+"' AND password='"+tk.GetPassword()+"'";
-        try{
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            
-            while(rs.next()){
-                lvtk = rs.getInt(1);
-            }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi !");
-        }
-        return lvtk; 
-    }    
+   
     public int InsertBan(Ban b){
         int insert = 0;
         String sql = "Insert into ban (TenBan, TrangThai) values ('"+b.GetTenBan()+"', '"+b.GetTrangThai()+"')";
@@ -522,13 +502,13 @@ public class ConnectSQL {
     public ArrayList<TaiKhoan> GetTaiKhoan(){
         ArrayList<TaiKhoan> arrtd = null;
         String sql;
-            sql = "SELECT * FROM taikhoan WHERE lv != 1";
+            sql = "SELECT * FROM taikhoan";
         try{
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             arrtd = new ArrayList<TaiKhoan>();
             while(rs.next()){
-                TaiKhoan td = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                TaiKhoan td = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3));
                 arrtd.add(td);
             }
         }catch(SQLException ex){
@@ -553,7 +533,7 @@ public class ConnectSQL {
     } 
     public int InserTK(TaiKhoan b){
         int insert = 0;
-        String sql = "Insert into taikhoan (username, password, lv) values ('"+b.GetUsername()+"', '"+b.GetPassword()+"', '"+b.GetLv()+"')";
+        String sql = "Insert into taikhoan (username, password) values ('" + b.GetUsername() + "', '" + b.GetPassword() + "')";
         try{
             Statement st = cn.createStatement();
             insert = st.executeUpdate(sql);
@@ -570,7 +550,7 @@ public class ConnectSQL {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-               td  = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+               td  = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3));
             }
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "lỗi !");
@@ -586,7 +566,7 @@ public class ConnectSQL {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-               td  = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+               td  = new TaiKhoan(rs.getInt(1), rs.getString(2), rs.getString(3));
             }
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "lỗi !");
@@ -595,7 +575,7 @@ public class ConnectSQL {
     }
     public int UpdateTK(TaiKhoan b){
         int update = 0;
-        String sql = "UPDATE taikhoan SET username = '"+b.GetUsername()+"', password = '"+b.GetPassword()+"', lv = '"+b.GetLv()+"' WHERE id = '"+b.GetID()+"'";
+        String sql = "UPDATE taikhoan SET username = '"+b.GetUsername()+"', password = '"+b.GetPassword()+"' WHERE id = '"+b.GetID()+"'";
         try{
             Statement st = cn.createStatement();
             update = st.executeUpdate(sql);

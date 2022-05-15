@@ -8,10 +8,6 @@ package Models;
 import java.util.Date;
 
 
-/**
- *
- * @author ThangIKCU
- */
 public class HoaDon {
     private int MaHoaDon, GiamGia, TongTien, TrangThai ,MaBan;
     private Date GioDen;

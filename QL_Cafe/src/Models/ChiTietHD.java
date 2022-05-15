@@ -5,10 +5,6 @@
  */
 package Models;
 
-/**
- *
- * @author ThangIKCU
- */
 public class ChiTietHD {
     private int MaChiTietHD, MaHoaDon, SoLuong, Gia;
     private String MaMon;
